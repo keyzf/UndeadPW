@@ -1,0 +1,30 @@
+{
+  "name": "UndeadPW",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "1.28.1",
+    "@typescript-eslint/eslint-plugin": "5.0.0",
+    "eslint": "8.0.1",
+    "eslint-config-standard-with-typescript": "23.0.0",
+    "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-n": "15.0.0",
+    "eslint-plugin-promise": "6.0.0",
+    "typescript": "*"
+  },
+  "scripts": {
+    "lint": "eslint . --ext .js,.ts",
+    "tests:run:qa": "cross-env test_env=qa playwright test",
+    "tests:run:integration": "cross-env test_env=integration playwright test",
+    "tests:run:stage": "cross-env test_env=stage playwright test",
+    "tests:run": "playwright test",
+    "tests:run:headed": "cross-env test_env=qa playwright test --headed",
+    "tests:report": "playwright show-report"
+  },
+  "dependencies": {
+    "cross-env": "7.0.3",
+    "dotenv": "16.0.3",
+    "husky": "8.0.2"
+  }
+}
