@@ -1,8 +1,8 @@
 import {Page} from "@playwright/test";
 
 export class DropdownFragment {
-  readonly page!: Page;
-  readonly root!: string;
+  readonly page: Page;
+  readonly root: string;
 
   constructor(page: Page, root: string) {
     this.page = page;

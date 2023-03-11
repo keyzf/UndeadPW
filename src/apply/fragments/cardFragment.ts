@@ -7,19 +7,20 @@ type CardData = {
 
 
 export class CardFragment {
-    readonly page!: Page;
+    readonly page: Page;
     readonly cardType: Locator;
     readonly root!: string;
 
     constructor(page: Page) {
-      this.cardType = page.locator('label[class^="RadioCardstyles__Wrapper"]');
+      this.page = page
+      this.cardType = page.locator('label');
     }
 
-    /**
+  /**
    * @param title - card title
    */
     async selectCard(title: string) {
-        await this.cardType.locator(':scope', {hasText: title}).click();
+      await this.cardType.filter({ hasText: title }).click();
     }
 
   /**
@@ -32,8 +33,8 @@ export class CardFragment {
         disabled: false
       }
 
-      data.name = await this.cardType.locator(':scope', {hasText: title}).innerText();
-      data.disabled = await this.cardType.locator(':scope', {hasText: title}).isDisabled();
+      data.name = await this.cardType.filter({ hasText: title }).innerText();
+      data.disabled = await this.cardType.filter({ hasText: title }).isDisabled();
 
       return data
     }

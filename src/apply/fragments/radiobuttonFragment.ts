@@ -1,7 +1,7 @@
 import {expect, Page} from "@playwright/test";
 
 export class RadioButtonFragment {
-  readonly page!: Page;
+  readonly page: Page;
 
   constructor(page: Page) {
     this.page = page;

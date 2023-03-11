@@ -7,8 +7,8 @@ type InputData = {
 }
 
 export class InputFragment {
-  readonly page!: Page;
-  readonly root!: string;
+  readonly page: Page;
+  readonly root: string;
 
   constructor(page: Page, root: string) {
     this.page = page;

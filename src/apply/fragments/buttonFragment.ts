@@ -6,10 +6,10 @@ type ButtonData = {
 }
 
 export class ButtonFragment {
-  readonly page!: Page;
-  readonly root!: string;
+  readonly page: Page;
+  readonly root?: string;
 
-  constructor(page: Page, root: string) {
+  constructor(page: Page, root?: string) {
     this.page = page;
     this.root = root;
   }
@@ -19,9 +19,10 @@ export class ButtonFragment {
   */
   async clickButton(buttonName?: string) {
     if(buttonName) {
-      await this.page.locator('button', { hasText: `${buttonName}` }).click();
+      await this.page.locator('button', { hasText: `${buttonName}` }).click({delay: 300});
+    } else {
+      await this.page.locator(this.root).click({delay: 300});
     }
-    await this.page.locator(this.root).click();
   }
 
   /**

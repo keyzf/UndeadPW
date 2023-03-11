@@ -1,7 +1,7 @@
 import {expect, Page} from "@playwright/test";
 
 export class CheckboxFragment {
-  readonly page!: Page;
+  readonly page: Page;
 
   constructor(page: Page) {
     this.page = page;
