@@ -1,5 +1,4 @@
 import {Locator, Page} from "@playwright/test";
-import {BasicFragment} from "./baseFragment";
 
 interface ButtonData {
   text: string;
