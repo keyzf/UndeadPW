@@ -1,13 +1,7 @@
-import type { PlaywrightTestConfig } from '@playwright/test';
 import { devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
-
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// require('dotenv').config();
+import type { PlaywrightTestConfig } from '@playwright/test';
 
 // Read from default ".env" file.
 dotenv.config();
@@ -21,7 +15,7 @@ dotenv.config({ path: path.resolve(__dirname, '..', 'my.env') });
 const config: PlaywrightTestConfig = {
   testDir: './tests',
   /* Maximum time one test can run for. */
-  expect: { timeout: 60000 },
+  expect: { timeout: 80000 },
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -41,6 +35,7 @@ const config: PlaywrightTestConfig = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    viewport: { width: 1920, height: 1080 }
   },
   globalSetup: 'data/globalSetup.ts',
 

@@ -1,8 +1,8 @@
 export * from './basicStep';
-export * from './typeOfLoanStep';
 export * from './currentCreditProfileStep';
 export * from './currentMortgageBalanceStep';
 export * from './firstTimeHomeBuyerStep';
+export * from './personalInfoStep';
 export * from './personalInfoStep';
 export * from './propertyAddressStep';
 export * from './propertyTypeStep';
@@ -11,3 +11,5 @@ export * from './propertyValueStep';
 export * from './purchaseLocationStep';
 export * from './purchaseProcessTypeStep';
 export * from './purposeOfRefinanceStep';
+export * from './rateComparisonStep';
+export * from './typeOfLoanStep';

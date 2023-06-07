@@ -15,6 +15,6 @@ export class PropertyAddressStep extends BasicStep {
   async enterAddress(value: string) {
     await expect(this.page).toHaveURL(/.*property-address/);
     await this.address.enterAddress({address: value});
-    await this.buttonFragment.clickButton('Continue');
+    await this.buttonFragment.click();
   }
 }

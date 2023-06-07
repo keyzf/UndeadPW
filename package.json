@@ -4,7 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "1.28.1",
     "@typescript-eslint/eslint-plugin": "5.0.0",
     "eslint": "8.0.1",
     "eslint-config-standard-with-typescript": "23.0.0",
@@ -19,13 +18,17 @@
     "tests:run:integration": "cross-env test_env=integration playwright test",
     "tests:run:stage": "cross-env test_env=stage playwright test",
     "tests:run": "playwright test",
-    "tests:run:headed": "cross-env test_env=qa playwright test --headed",
+    "tests:run:headed": "cross-env test_env=qa playwright test apply_example.spec.ts --headed",
     "tests:report": "playwright show-report"
   },
   "dependencies": {
+    "@playwright/test": "^1.32",
+    "@types/url-parse": "^1.4.8",
     "cross-env": "7.0.3",
     "dotenv": "16.0.3",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "husky": "8.0.2",
-    "playwright": "^1.31.2"
+    "playwright": "^1.32.0"
   }
 }

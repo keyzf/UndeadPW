@@ -11,9 +11,8 @@ export class BasicStep {
   async openApply(env: string) {
     //Set apply domain (when domain = company)
     await this.page.addInitScript(()=>{
-        window.indexedDB.deleteDatabase('localforage');
-        window.localStorage.clear();
-        window.localStorage.setItem('interfirstApply.changedDomainName', 'aqa-skynet.cyberdynemortgage.com');
+      window.indexedDB.deleteDatabase('localforage');
+      window.localStorage.clear();
     });
     await this.page.goto(env);
     await expect(this.page).toHaveURL(/.*applications/);

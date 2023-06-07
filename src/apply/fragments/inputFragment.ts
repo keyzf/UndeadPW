@@ -1,9 +1,9 @@
-import {Page} from '@playwright/test';
+import {expect, Page} from '@playwright/test';
 
-type InputData = {
-  value: string,
-  label: string,
-  disabled: boolean
+interface InputData {
+  value: string;
+  label: string;
+  disabled: boolean;
 }
 
 export class InputFragment {
@@ -16,31 +16,31 @@ export class InputFragment {
   }
 
   /**
-  * @param value - value to type into input
-  * @param clear - need to clear input
-  */
-  async enterValue(value: string, clear?: boolean) {
-    if(clear) {
-      await this.page.locator(this.root).clear();
-      await this.page.locator(this.root).type(value);
+   * @param value - value to type into input
+   * @param clear - need to clear input
+   */
+  async enterValue(value: string, clear?: boolean): Promise<void> {
+    const inputLocator = this.page.locator(this.root);
+    if (clear) {
+      await inputLocator.clear();
+      await inputLocator.type(value);
     }
-    await this.page.locator(this.root).type(value);
+    await inputLocator.type(value, {delay: 70});
+    await expect(inputLocator).not.toBeEmpty();
+    await this.page.waitForTimeout(500);
   }
 
   /**
-  * @return {InputData} input data
-  */
-     async getData(): Promise<InputData> {
-      const data = {
-        value: '',
-        label: '',
-        disabled: false
-      }
-
-      data.value = await this.page.locator(this.root).innerText();
-      data.label = await this.page.locator(this.root).locator('label').innerText();
-      data.disabled = await this.page.locator(this.root).isDisabled();
-
-      return data
-    }
+   * @return {InputData} input data
+   */
+  async getData(): Promise<InputData> {
+    const inputLocator = this.page.locator(this.root);
+    const labelLocator = inputLocator.locator('label');
+    const [value, label, disabled] = await Promise.all([
+      inputLocator.innerText(),
+      labelLocator.innerText(),
+      inputLocator.isDisabled(),
+    ]);
+    return {value, label, disabled};
+  }
 }

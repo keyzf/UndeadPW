@@ -1,6 +1,6 @@
 import {Locator, Page} from '@playwright/test';
 
-type TGetApplicationProgressFragment = {
+interface GetApplicationProgressFragment {
   text?: string,
   percentage?: string
 }
@@ -17,7 +17,7 @@ export class ApplicationProgressFragment {
   /**
   * @return {ApplicationProgressData} input data
   */
-  async getData(): Promise<TGetApplicationProgressFragment> {
+  async getData(): Promise<GetApplicationProgressFragment> {
     const data = {
       text: '',
       percentage: '',

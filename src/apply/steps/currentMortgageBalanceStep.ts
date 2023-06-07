@@ -15,6 +15,6 @@ export class CurrentMortgageBalanceStep extends BasicStep {
   async enterCurrentMortgageBalance(value: string) {
     await expect(this.page).toHaveURL(/.*current-mortgage-balance/);
     await this.inputFragment.enterValue(value);
-    await this.continueButton.clickButton('Continue');
+    await this.continueButton.click();
   }
 }

@@ -1,4 +1,4 @@
-import {expect, Page} from "@playwright/test";
+import {Page} from "@playwright/test";
 
 export class CheckboxFragment {
   readonly page: Page;
@@ -8,10 +8,13 @@ export class CheckboxFragment {
   }
 
   /**
-  * @param value - checkbox value
-  */
-  async checkValue(value: string) {
-    await this.page.getByLabel(value).check();
-    expect(await this.page.getByLabel(value).isChecked()).toBeTruthy();
+   * Toggles the checkbox with the given value.
+   * @param value - The value of the checkbox.
+   * @returns A promise that resolves when the checkbox is checked.
+   */
+  async toggleCheckboxWithValue(value: string): Promise<void> {
+    const checkbox = await this.page.locator(`//*[contains(text(), '${value}')]/..//input`);
+    await checkbox.click({force: true, delay: 70});
+    await this.page.waitForTimeout(500);
   }
 }

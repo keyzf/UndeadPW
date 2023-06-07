@@ -1,42 +1,35 @@
-import {Page} from "@playwright/test";
+import {Locator, Page} from "@playwright/test";
+import {BasicFragment} from "./baseFragment";
 
-type ButtonData = {
-  name: string,
-  disabled: boolean
+interface ButtonData {
+  text: string;
+  disabled: boolean;
 }
 
 export class ButtonFragment {
   readonly page: Page;
-  readonly root?: string;
+  readonly root: string;
 
-  constructor(page: Page, root?: string) {
+  constructor(page: Page, root: string) {
     this.page = page;
     this.root = root;
   }
 
   /**
-  * @param buttonName - name of button
-  */
-  async clickButton(buttonName?: string) {
-    if(buttonName) {
-      await this.page.locator('button', { hasText: `${buttonName}` }).click({delay: 300});
-    } else {
-      await this.page.locator(this.root).click({delay: 300});
-    }
+   * Clicks the button.
+   */
+  async click() {
+    await this.page.click(this.root as string, {delay: 300});
   }
 
   /**
-  * @return {ButtonData} button data
-  */
-  async getData(): Promise<ButtonData> {
-    const data = {
-      name: '',
-      disabled: false
-    }
-
-    data.name = await this.page.locator(this.root).innerText();
-    data.disabled = await this.page.locator(this.root).isDisabled();
-
-    return data
+   * Gets the button data.
+   * @returns {ButtonData} Button data.
+   */
+  async getButtonData(): Promise<ButtonData> {
+    return {
+      text: await this.page.innerText(this.root as string),
+      disabled: await this.page.isDisabled(this.root as string),
+    };
   }
 }
