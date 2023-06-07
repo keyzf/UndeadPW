@@ -20,5 +20,5 @@ export class StepHeaderFragment {
     }
     data.text = await this.page.locator('h1').innerText();
     return data
-   }
+  }
 }
