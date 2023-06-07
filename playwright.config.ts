@@ -1,13 +1,13 @@
-import { devices } from '@playwright/test';
+import {devices} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
-import type { PlaywrightTestConfig } from '@playwright/test';
+import type {PlaywrightTestConfig} from '@playwright/test';
 
 // Read from default ".env" file.
 dotenv.config();
 
 // Alternatively, read from "../my.env" file.
-dotenv.config({ path: path.resolve(__dirname, '..', 'my.env') });
+dotenv.config({path: path.resolve(__dirname, '..', 'my.env')});
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -15,7 +15,7 @@ dotenv.config({ path: path.resolve(__dirname, '..', 'my.env') });
 const config: PlaywrightTestConfig = {
   testDir: './tests',
   /* Maximum time one test can run for. */
-  expect: { timeout: 80000 },
+  expect: {timeout: 80000},
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -31,11 +31,11 @@ const config: PlaywrightTestConfig = {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-      //baseURL: process.env.URL,
+    //baseURL: process.env.URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    viewport: { width: 1920, height: 1080 }
+    viewport: {width: 1920, height: 1080}
   },
   globalSetup: 'data/globalSetup.ts',
 
@@ -48,19 +48,19 @@ const config: PlaywrightTestConfig = {
       },
     },
 
-//    {
-//      name: 'firefox',
-//      use: {
-//        ...devices['Desktop Firefox'],
-//      },
-//    },
-//
-//    {
-//      name: 'webkit',
-//      use: {
-//        ...devices['Desktop Safari'],
-//      },
-//    },
+    //    {
+    //      name: 'firefox',
+    //      use: {
+    //        ...devices['Desktop Firefox'],
+    //      },
+    //    },
+    //
+    //    {
+    //      name: 'webkit',
+    //      use: {
+    //        ...devices['Desktop Safari'],
+    //      },
+    //    },
 
     /* Test against mobile viewports. */
     // {
