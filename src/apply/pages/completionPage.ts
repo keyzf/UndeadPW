@@ -1,5 +1,6 @@
-import {Page} from "@playwright/test";
-import {ButtonFragment, TextFragment} from "../fragments";
+import {Page} from '@playwright/test'
+
+import {ButtonFragment, TextFragment} from '../fragments'
 
 export class CompletionPage {
   readonly canvas

@@ -1,4 +1,4 @@
-export * from './basicFragment'
+export * from './baseFragment'
 export * from './buttonFragment'
 export * from './checkboxFragment'
 export * from './dropdownFragment'

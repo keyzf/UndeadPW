@@ -1,24 +1,14 @@
-import {Locator, Page} from "@playwright/test";
+import {ButtonData} from '../../shared'
 
-interface ButtonData {
-  text: string;
-  disabled: boolean;
-}
+import {BaseFragment} from './baseFragment'
 
-export class ButtonFragment {
-  readonly page: Page;
-  readonly root: string;
-
-  constructor(page: Page, root: string) {
-    this.page = page;
-    this.root = root;
-  }
-
+export class ButtonFragment extends BaseFragment {
   /**
    * Clicks the button.
    */
   async click() {
-    await this.page.click(this.root as string, {delay: 300});
+    await this.getLocator().isVisible()
+    await this.page.click(this.root as string, {delay: 300})
   }
 
   /**
@@ -29,6 +19,6 @@ export class ButtonFragment {
     return {
       text: await this.page.innerText(this.root as string),
       disabled: await this.page.isDisabled(this.root as string),
-    };
+    }
   }
 }

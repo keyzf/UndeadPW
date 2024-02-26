@@ -1,16 +1,11 @@
 import {cardData, flowData} from 'data/apply'
 import {DeclarationsValues} from 'src/apply/steps/declarationsSubsteps'
-import {LoginModalFragment} from 'src/apply/fragments'
-import {Steps} from '../../src/apply/po'
-import {test, expect} from '@playwright/test'
+import {expect, test} from 'fixtures'
 import ENV from '../../data/envs/env'
 
 test.describe('Apply', () => {
-  test('Apply Full Test', async ({page}) => {
-    const steps = new Steps(page)
-    const loginModal = new LoginModalFragment(page)
-
-    await steps.typeOfLoan.openApply('https://apply.qa.cyberdynemortgage.com/')
+  test('Apply Full Test', async ({steps, loginModal, page}) => {
+    await steps.typeOfLoan.openApply(ENV.APPLY_URL)
     await steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.REFINANCE)
     await steps.propertyType.selectPropertyType(cardData.propertyType.MANUFACTURED_HOME)
     await steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.SECOND_HOME)

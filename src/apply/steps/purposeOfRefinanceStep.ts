@@ -1,17 +1,18 @@
-import {expect, Page} from "@playwright/test";
-import {CardFragment} from "../fragments";
-import {BasicStep} from "./basicStep";
+import {BasicStep} from './basicStep'
+import {CardFragment} from '../fragments'
+import {Page, expect} from '@playwright/test'
+import {urlData} from 'data/apply'
 
 export class PurposeOfRefinanceStep extends BasicStep {
-  readonly card: CardFragment;
+  readonly card: CardFragment
 
   constructor(page: Page) {
-    super(page);
-    this.card = new CardFragment(page);
+    super(page)
+    this.card = new CardFragment(page)
   }
 
   async selectPurposeOfRefinance(plateName: string) {
-    await expect(this.page).toHaveURL(/.*purpose-of-refinance/);
-    await this.card.selectCard(plateName);
+    await expect(this.page).toHaveURL(urlData.purposeOfRefinance)
+    await this.card.selectCard(plateName)
   }
 }

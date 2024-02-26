@@ -1,20 +1,24 @@
-import {expect, Page} from "@playwright/test";
-import {ButtonFragment, InputFragment} from "../fragments";
-import {BasicStep} from "./basicStep";
+import {BasicStep} from './basicStep'
+import {CurrentMortgageBalancePage} from '../pages'
+import {Page, expect} from '@playwright/test'
+import {urlData} from 'data/apply'
 
 export class CurrentMortgageBalanceStep extends BasicStep {
-  readonly inputFragment: InputFragment;
-  readonly continueButton: ButtonFragment;
+  currentMortgageBalancePage: CurrentMortgageBalancePage
 
   constructor(page: Page) {
-    super(page);
-    this.inputFragment = new InputFragment(page, '[name="firstMortgageBalance"]');
-    this.continueButton = new ButtonFragment(page, '[data-testid="footer__nextButton"]');
+    super(page)
+    this.currentMortgageBalancePage = new CurrentMortgageBalancePage(page)
   }
 
-  async enterCurrentMortgageBalance(value: string) {
-    await expect(this.page).toHaveURL(/.*current-mortgage-balance/);
-    await this.inputFragment.enterValue(value);
-    await this.continueButton.click();
+  async enterCurrentMortgageBalance(value: string, homeIsPaidOff?: boolean) {
+    await expect(this.page).toHaveURL(urlData.currentMortgageBalance)
+    await this.currentMortgageBalancePage.inputFragment.enterValue(value)
+    if(homeIsPaidOff) {
+      await this.currentMortgageBalancePage.checkbox.check()
+    } else {
+      await this.currentMortgageBalancePage.checkbox.uncheck()
+    }
+    await this.footer.continueButton.click()
   }
 }

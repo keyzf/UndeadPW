@@ -1,5 +1,6 @@
-import {BasicStep} from "./basicStep"
-import {expect, Page} from "@playwright/test"
+import {BasicStep} from './basicStep'
+import {Page, expect} from '@playwright/test'
+import {urlData} from 'data/apply'
 
 export class ReviewStep extends BasicStep {
   constructor(page: Page) {
@@ -7,7 +8,7 @@ export class ReviewStep extends BasicStep {
   }
 
   async continue() {
-    await expect(this.page).toHaveURL(/.*quick-review/)
+    await expect(this.page).toHaveURL(urlData.quickReview)
     await this.footer.continueButton.click()
   }
 }

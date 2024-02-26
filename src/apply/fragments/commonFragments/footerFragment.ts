@@ -1,17 +1,16 @@
-import {Locator, Page} from '@playwright/test';
-import {ButtonFragment} from '../buttonFragment';
+import {ButtonFragment} from '../buttonFragment'
+import {Page} from '@playwright/test'
 
-export class FooterFragment extends ButtonFragment {
-  readonly page: Page;
-  readonly root: string;
-  readonly continueButton: Locator;
-  readonly goBackButton: Locator;
+export class FooterFragment {
+  readonly continueButton: ButtonFragment
+  readonly goBackButton: ButtonFragment
+  readonly page: Page
+  readonly root: string
 
   constructor(page: Page) {
-    super(page, 'footer');
-    this.page = page;
-    this.root = 'footer';
-    this.continueButton = this.page.locator(this.root).locator('[data-testid="footer__nextButton"]');
-    this.goBackButton = this.page.locator(this.root).locator('[data-testid="footer__goBackButton"]');
+    this.page = page
+    this.root = 'footer'
+    this.continueButton = new ButtonFragment(page, '[data-testid="footer__nextButton"]')
+    this.goBackButton = new ButtonFragment(page, '[data-testid="footer__goBackButton"]')
   }
 }

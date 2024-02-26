@@ -38,5 +38,9 @@ export const cardData = {
   workingWithRealtor: {
     NO: 'NO',
     YES: 'YES'
+  },
+  firstTimeBuyer: {
+    NO: 'NO',
+    YES: 'YES'
   }
 }

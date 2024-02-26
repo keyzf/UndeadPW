@@ -1,14 +1,14 @@
-import {Locator, Page} from '@playwright/test';
+import {Page} from '@playwright/test'
 
 type StepHeaders = {
   text?: string,
 }
 
 export class StepHeaderFragment {
-  readonly page: Page;
+  readonly page: Page
 
   constructor(page: Page) {
-    this.page = page;
+    this.page = page
   }
 
   /**
@@ -18,7 +18,7 @@ export class StepHeaderFragment {
     const data = {
       text: ''
     }
-    data.text = await this.page.locator('h1').innerText();
+    data.text = await this.page.locator('h1').innerText()
     return data
   }
 }

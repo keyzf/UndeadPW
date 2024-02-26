@@ -8,6 +8,5 @@ async function globalSetup (config: FullConfig) {
       override: true
     })
   }
-  console.log('Config file not found')
 }
 export default globalSetup

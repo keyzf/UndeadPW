@@ -1,6 +1,7 @@
-import {BasicStep} from "./basicStep"
-import {expect, Page} from "@playwright/test"
-import {CompletionPage} from "../pages"
+import {BasicStep} from './basicStep'
+import {CompletionPage} from '../pages'
+import {Page, expect} from '@playwright/test'
+import {urlData} from 'data/apply'
 
 export class CompletionStep extends BasicStep {
   readonly completionPage: CompletionPage
@@ -11,7 +12,7 @@ export class CompletionStep extends BasicStep {
   }
 
   async checkCompletionStep() {
-    await expect(this.page).toHaveURL(/.*completion/)
+    await expect(this.page).toHaveURL(urlData.completion)
     await this.completionPage.text
   }
 }

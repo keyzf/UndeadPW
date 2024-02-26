@@ -1,19 +1,21 @@
-import {devices} from '@playwright/test';
-import dotenv from 'dotenv';
-import path from 'path';
-import type {PlaywrightTestConfig} from '@playwright/test';
+import path from 'path'
+
+import {devices} from '@playwright/test'
+import type {PlaywrightTestConfig} from '@playwright/test'
+import dotenv from 'dotenv'
 
 // Read from default ".env" file.
-dotenv.config();
+dotenv.config()
 
 // Alternatively, read from "../my.env" file.
-dotenv.config({path: path.resolve(__dirname, '..', 'my.env')});
+dotenv.config({path: path.resolve(__dirname, '..', 'my.env')})
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
   testDir: './tests',
+  timeout: 80000,
   /* Maximum time one test can run for. */
   expect: {timeout: 80000},
   /* Run tests in files in parallel */
@@ -31,7 +33,7 @@ const config: PlaywrightTestConfig = {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    //baseURL: process.env.URL,
+    baseURL: process.env.URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -99,6 +101,6 @@ const config: PlaywrightTestConfig = {
   //   command: 'npm run start',
   //   port: 3000,
   // },
-};
+}
 
-export default config;
+export default config

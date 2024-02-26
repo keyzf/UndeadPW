@@ -1,20 +1,27 @@
-import {Page} from "@playwright/test";
+import {BaseFragment} from '.'
 
-export class CheckboxFragment {
-  readonly page: Page;
-
-  constructor(page: Page) {
-    this.page = page;
-  }
-
+export class CheckboxFragment extends BaseFragment {
   /**
    * Toggles the checkbox with the given value.
    * @param value - The value of the checkbox.
    * @returns A promise that resolves when the checkbox is checked.
    */
-  async toggleCheckboxWithValue(value: string): Promise<void> {
-    const checkbox = await this.page.locator(`//*[contains(text(), '${value}')]/..//input`);
-    await checkbox.click({force: true, delay: 70});
-    await this.page.waitForTimeout(500);
+  async check(value?: string): Promise<void> {
+    if(value) {
+      await this.getLocator().getByText(value).check({force: true})
+      await this.page.waitForTimeout(1000)
+    } else {
+      await this.getLocator().check({force: true})
+      await this.page.waitForTimeout(1000)
+    }
+  }
+
+  async uncheck(value?: string): Promise<void> {
+    if(value) {
+      await this.page.getByText(value).uncheck({force: true})
+      await this.page.waitForTimeout(1000)
+    }
+    await this.getLocator().uncheck({force: true})
+    await this.page.waitForTimeout(1000)
   }
 }

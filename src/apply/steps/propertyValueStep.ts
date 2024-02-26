@@ -1,20 +1,19 @@
-import {expect, Page} from "@playwright/test";
-import {ButtonFragment, InputFragment} from "../fragments";
-import {BasicStep} from "./basicStep";
+import {BasicStep} from './basicStep'
+import {Page, expect} from '@playwright/test'
+import {PropertyValuePage} from '../pages'
+import {urlData} from 'data/apply'
 
 export class PropertyValueStep extends BasicStep {
-  readonly inputFragment: InputFragment;
-  readonly continueButton: ButtonFragment;
+  propertyValue: PropertyValuePage
 
   constructor(page: Page) {
-    super(page);
-    this.inputFragment = new InputFragment(page, '[name="propertyValue"]');
-    this.continueButton = new ButtonFragment(page, '[data-testid="footer__nextButton"]');
+    super(page)
+    this.propertyValue = new PropertyValuePage(page)
   }
 
   async enterPropertyValue(value: string) {
-    await expect(this.page).toHaveURL(/.*property-value/);
-    await this.inputFragment.enterValue(value);
-    await this.continueButton.click();
+    await expect(this.page).toHaveURL(urlData.propertyValue)
+    await this.propertyValue.inputFragment.enterValue(value)
+    await this.footer.continueButton.click()
   }
 }

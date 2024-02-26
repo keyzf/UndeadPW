@@ -3,32 +3,36 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.0.0",
-    "eslint": "8.0.1",
-    "eslint-config-standard-with-typescript": "23.0.0",
-    "eslint-plugin-import": "2.25.2",
-    "eslint-plugin-n": "15.0.0",
-    "eslint-plugin-promise": "6.0.0",
-    "typescript": "*"
-  },
   "scripts": {
     "lint": "eslint . --ext .js,.ts",
+    "lint-and-fix": "eslint . --ext .ts --fix",
     "tests:run:qa": "cross-env test_env=qa playwright test",
     "tests:run:integration": "cross-env test_env=integration playwright test",
     "tests:run:stage": "cross-env test_env=stage playwright test",
     "tests:run": "playwright test",
-    "tests:run:headed": "cross-env test_env=qa playwright test apply_example.spec.ts --headed",
-    "tests:report": "playwright show-report"
+    "tests:run:headed": "cross-env test_env=qa playwright test skynet.spec.ts --headed",
+    "tests:report": "playwright show-report",
+    "ui_mode": "cross-env test_env=qa playwright test --ui"
   },
   "dependencies": {
-    "@playwright/test": "^1.32",
-    "@types/url-parse": "^1.4.8",
+    "@playwright/test": "1.41.1",
+    "@types/url-parse": "1.4.8",
     "cross-env": "7.0.3",
     "dotenv": "16.0.3",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-cypress": "^2.12.1",
-    "husky": "8.0.2",
-    "playwright": "^1.32.0"
+    "eslint-config-google": "0.14.0",
+    "husky": "8.0.2"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "8.4.1",
+    "@types/node": "20.10.5",
+    "@typescript-eslint/eslint-plugin": "5.0.0",
+    "axios": "1.6.2",
+    "eslint": "8.57.0",
+    "eslint-config-standard-with-typescript": "23.0.0",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-n": "15.0.0",
+    "eslint-plugin-promise": "6.0.0",
+    "typescript": "5.3.3",
+    "typescript-eslint": "7.0.2"
   }
 }

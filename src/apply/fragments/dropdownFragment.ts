@@ -1,18 +1,11 @@
-import {Page} from "@playwright/test";
+import {BaseFragment} from './baseFragment'
 
-export class DropdownFragment {
-  readonly page: Page;
-  readonly root: string;
-
-  constructor(page: Page, root: string) {
-    this.page = page;
-    this.root = root;
-  }
-
+export class DropdownFragment extends BaseFragment {
   /**
-  * @param value - value to type into input
-  */
+   * @param value - value to type into input
+   */
   async selectValue(value: string) {
-    await this.page.locator(this.root).selectOption(value);
+    await this.getLocator().click()
+    await this.page.locator('[class^="Selectstyles__OptionLabelWrapper"]').getByText(value, {exact: true}).click()
   }
 }

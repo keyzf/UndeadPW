@@ -1,7 +1,7 @@
-import {BasicStep} from "./basicStep"
-import {CreditProfilePage} from "../pages"
-import {expect, Page} from "@playwright/test"
-import {FooterFragment} from "../fragments"
+import {BasicStep} from './basicStep'
+import {CreditProfilePage} from '../pages'
+import {Page, expect} from '@playwright/test'
+import {urlData} from 'data/apply'
 
 export class CreditProfile extends BasicStep {
   public creditProfilePage: CreditProfilePage
@@ -17,7 +17,7 @@ export class CreditProfile extends BasicStep {
   }
 
   async continue() {
-    await expect(this.page).toHaveURL(/.*credit-profile/)
+    await expect(this.page).toHaveURL(urlData.creditProfile)
     await this.footer.continueButton.click()
   }
 }

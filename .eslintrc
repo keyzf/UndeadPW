@@ -1,0 +1,53 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "import"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "no-duplicate-enum-values": "off",
+    "semi": ["error", "never"],
+    "no-extra-semi": "error",
+    "max-len": ["error", 120],
+    "quotes": ["ERROR", "single", { "allowTemplateLiterals": true }],
+    "spaced-comment": "off",
+    "linebreak-style": ["off", "unix"],
+    "comma-dangle": "off",
+    "space-before-function-paren": ["off"],
+    "arrow-parens": "off",
+    "space-infix-ops": "off",
+    "keyword-spacing": "off",
+    "no-invalid-this": "off",
+    "require-jsdoc": "off",
+    "new-cap": "off",
+    "valid-jsdoc": "off",
+    "object-curly-spacing": ["warn", "never"],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-duplicate-enum-values": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "cypress/no-unnecessary-waiting": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-tabs": "off",
+    "no-tabs": "off",
+    "guard-for-in": "off",
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "no-multiple-empty-lines": ["warn", { "max": 1, "maxBOF": 1 }],
+    "sort-imports": ["error", {
+      "ignoreCase": false,
+      "ignoreDeclarationSort": true,
+      "ignoreMemberSort": false,
+      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+      "allowSeparatedGroups": false
+    }],
+    "no-console": 2
+  }
+}

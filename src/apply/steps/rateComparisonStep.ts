@@ -1,54 +1,45 @@
-import {TextFragment} from "../fragments/";
-import {ElementHandle, expect, Page, Locator, test} from "@playwright/test";
-import {BasicStep} from './basicStep';
+import {BasicStep} from './basicStep'
+import {Page, expect, test} from '@playwright/test'
+import {TextFragment} from '../fragments/'
+import {urlData} from 'data/apply'
 
 export class RateComparisonStep extends BasicStep {
-  private readonly rateComparisonErrorElement: TextFragment;
+  private readonly rateComparisonErrorElement: TextFragment
+  readonly programElement: string
+  readonly rateElement: string
 
   constructor(page: Page) {
-    super(page);
-    this.rateComparisonErrorElement = new TextFragment(this.page, '[class^="errorText__ErrorText"]');
+    super(page)
+    this.rateComparisonErrorElement = new TextFragment(this.page, '[class^="errorText__ErrorText"]')
+    this.rateElement = '[class^="TermTabstyles__Tab"]'
+    this.programElement = '[class^="ProgramCardstyles__Card"]'
   }
 
-  public async chooseRateComparison(rate?: string) {
+  public async chooseRateComparison(rate?: string, program?: string) {
+    await expect(this.page).toHaveURL(urlData.rateComparison)
+    await this.page.waitForSelector('[class*="Carousel__ContentWrapper"]', {state: 'visible'})
     await test.step(`Choose Rate Comparison - ${rate || 'default'}`, async () => {
-      await this.page.waitForSelector('[class^="StrokeTextstyles__UpperPart"] >> span');
-      const rateElements = await this.page.$$('[class^="StrokeTextstyles__UpperPart"] >> span');
-      const rateElement = rate ? rateElements.find(async (element) => {
-        const text = await element.innerText();
-        return text === rate;
-      }) : rateElements[0];
-      if (!rateElement) {
-        throw new Error(`Element "${rate || 'default'}" not found`);
+      await this.page.waitForSelector(this.rateElement, {state: 'visible'})
+      if(rate) {
+        await this.page.getByRole('button', {name: `${rate}`}).click({force: true})
       }
-      await rateElement.click();
-    });
+      await this.page.locator(this.rateElement).first().click({force: true})
+      await this.footer.continueButton.click()
+    })
   }
 
-  public async chooseProgram(rate?: string) {
-    await test.step(`Choose Program - ${rate}`, async () => {
-      if (rate) {
-        await this.page.waitForSelector('[class^="ProgramCardstyles__CellsContainer"] >> span');
-        const programElements = await this.page.$$('[class^="ProgramCardstyles__CellsContainer"] >> span');
-        const programElement = programElements.find(async (element) => {
-          const text = await element.innerText();
-          return text === rate;
-        });
-        if (!programElement) {
-          throw new Error(`Program "${rate}" not found`);
-        }
-        await programElement.click();
+  public async chooseProgram(program?: string) {
+    await test.step(`Choose Program - ${program}`, async () => {
+      if (program) {
+        await this.page.waitForSelector(this.rateElement, {state: 'visible'})
+        await this.page.locator('#RateComparison div').filter({hasText: program}).nth(1).click()
       }
-      await this.page.waitForSelector('[class^="ProgramCardstyles__Card"]');
-      const programCardElement = this.page.locator('[class^="ProgramCardstyles__Card"]').first();
-      if (!programCardElement) {
-        throw new Error('Cart not found');
-      }
-      await programCardElement.click();
-    });
+      await this.page.waitForSelector(this.rateElement, {state: 'visible'})
+      await this.page.locator(this.programElement).first().click()
+    })
   }
 
   public getRateComparisonError(): TextFragment {
-    return this.rateComparisonErrorElement;
+    return this.rateComparisonErrorElement
   }
 }

@@ -1,4 +1,4 @@
-import {Locator, Page} from '@playwright/test';
+import {Locator, Page} from '@playwright/test'
 
 interface GetApplicationProgressFragment {
   text?: string,
@@ -6,12 +6,12 @@ interface GetApplicationProgressFragment {
 }
 
 export class ApplicationProgressFragment {
-  readonly page: Page;
-  readonly progress: Locator;
+  readonly page: Page
+  readonly progress: Locator
 
   constructor(page: Page) {
-    this.page = page;
-    this.progress = page.locator('[class^="CircleProgressBar__Wrapper"]');
+    this.page = page
+    this.progress = page.locator('[class^="CircleProgressBar__Wrapper"]')
   }
 
   /**
@@ -23,8 +23,8 @@ export class ApplicationProgressFragment {
       percentage: '',
       color: ''
     }
-    data.text = await this.page.locator('[class^="Progressstyles__ProgressWrapper"]').innerText();
-    data.percentage = await this.progress.locator('g').textContent() as string;
+    data.text = await this.page.locator('[class^="Progressstyles__ProgressWrapper"]').innerText()
+    data.percentage = await this.progress.locator('g').textContent() as string
     return data
   }
 }

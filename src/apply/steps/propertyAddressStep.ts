@@ -1,20 +1,21 @@
-import {expect, Page} from "@playwright/test";
-import {AddressFragment, ButtonFragment} from '../fragments'
-import {BasicStep} from "./basicStep";
+import {AddressFragment} from '../fragments'
+import {BasicStep} from './basicStep'
+import {Page, expect} from '@playwright/test'
+import {urlData} from 'data/apply'
 
 export class PropertyAddressStep extends BasicStep {
-  readonly address: AddressFragment;
-  readonly buttonFragment: ButtonFragment;
+  address: AddressFragment
 
   constructor(page: Page) {
-    super(page);
-    this.address = new AddressFragment(page);
-    this.buttonFragment = new ButtonFragment(page, '[data-testid="footer__nextButton"]');
+    super(page)
+    this.address = new AddressFragment(page)
   }
 
   async enterAddress(value: string) {
-    await expect(this.page).toHaveURL(/.*property-address/);
-    await this.address.enterAddress({address: value});
-    await this.buttonFragment.click();
+    await expect(this.page).toHaveURL(urlData.propertyAddress)
+    await this.address.enterAddress({address: value})
+    // No need to delete. animation
+    await this.page.waitForTimeout(1000)
+    await this.footer.continueButton.click()
   }
 }

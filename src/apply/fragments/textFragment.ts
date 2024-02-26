@@ -1,15 +1,7 @@
-import {GetPlaywrightElement} from "../shared/sharedInterfaces";
-import {Page} from "@playwright/test";
+import {BaseFragment} from './baseFragment'
 
-export class TextFragment {
-  readonly page: Page;
-  readonly root: GetPlaywrightElement;
-
-  constructor(page: Page, root: GetPlaywrightElement) {
-    this.page = page;
-    this.root = root;
-  }
-  async getData(): Promise<string> {
-    return await this.page.locator(<string>this.root).innerText();
+export class TextFragment extends BaseFragment {
+  async getData(): Promise<string | null> {
+    return await this.page.locator(<string>this.root).textContent()
   }
 }
