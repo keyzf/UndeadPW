@@ -8,10 +8,12 @@ interface CardData {
 export class CardFragment {
   readonly page: Page
   readonly cardType: Locator
+  readonly checkMark: Locator
 
   constructor(page: Page) {
     this.page = page
     this.cardType = page.locator('label')
+    this.checkMark = this.cardType.locator('div[class*="CheckedMarkstyles"]')
   }
 
   /**

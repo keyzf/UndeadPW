@@ -15,7 +15,7 @@
     "ui_mode": "cross-env test_env=qa playwright test --ui"
   },
   "dependencies": {
-    "@playwright/test": "1.41.1",
+    "@playwright/test": "^1.41.2",
     "@types/url-parse": "1.4.8",
     "cross-env": "7.0.3",
     "dotenv": "16.0.3",

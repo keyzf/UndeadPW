@@ -1,11 +1,10 @@
-import {Page} from '@playwright/test'
-
-import ENV from '../../../data/envs/env'
+import {BasePage} from './basePage'
 import {ButtonFragment, InputFragment} from '../fragments'
+import {Page} from '@playwright/test'
 import {TLoginUserData, UserHelper} from '../helpers/ui'
+import ENV from 'data/envs/env'
 
-export class LoginPage {
-  readonly page: Page
+export class LoginPage extends BasePage {
   readonly usernameInput: InputFragment
   readonly passwordInput: InputFragment
   readonly loginButton: ButtonFragment
@@ -16,7 +15,7 @@ export class LoginPage {
   readonly userHelper: UserHelper
 
   constructor(page: Page) {
-    this.page = page
+    super(page)
     this.userHelper = new UserHelper()
 
     this.usernameInput = new InputFragment(page, '[name="email"]')
@@ -26,15 +25,6 @@ export class LoginPage {
     this.domainInput = new InputFragment(page, '[name="domain"]')
     this.saveButton = new ButtonFragment(page, ':has-text("Save")')
     this.resetButton = new ButtonFragment(page, ':has-text("Reset")')
-  }
-
-  /**
-   *
-   * @param env URL or ENV param
-   */
-  async openSkynet(env: string) {
-    await this.page.goto(env)
-    await this.page.waitForURL(/.*/)
   }
 
   async login(userName: string, password: string) {

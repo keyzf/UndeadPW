@@ -1,10 +1,8 @@
-import {expect} from '@playwright/test'
-import axios, {AxiosResponse} from 'axios'
-
 import {accountsPaths as paths} from '../../../../../data/accountsAPI'
-import ENV from '../../../../../data/envs/env'
-
+import {expect} from '@playwright/test'
 import {TSignUpCreateRequest, TSignUpCredentials, TSignUpRequest} from './accountsTypes'
+import axios, {AxiosResponse} from 'axios'
+import ENV from '../../../../../data/envs/env'
 
 export class AccountsSignUp {
   public async signUpCredentials(userData: TSignUpCredentials, password: string): Promise<unknown> {

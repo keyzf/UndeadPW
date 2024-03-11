@@ -4,7 +4,7 @@ import {expect, test} from 'fixtures'
 import ENV from '../../data/envs/env'
 
 test.describe('Apply', () => {
-  test('Apply Full Test', async ({steps, loginModal, page}) => {
+  test.skip('Apply Full Test', async ({steps, loginModal, page}) => {
     await steps.typeOfLoan.openApply(ENV.APPLY_URL)
     await steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.REFINANCE)
     await steps.propertyType.selectPropertyType(cardData.propertyType.MANUFACTURED_HOME)

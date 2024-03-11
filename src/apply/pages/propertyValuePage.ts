@@ -1,5 +1,4 @@
 import {Page} from '@playwright/test'
-
 import {InputFragment} from '../fragments'
 
 export class PropertyValuePage {

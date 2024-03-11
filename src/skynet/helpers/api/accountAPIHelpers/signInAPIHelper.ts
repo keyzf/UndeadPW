@@ -1,6 +1,5 @@
-import axios, {AxiosResponse} from 'axios'
-
 import {accountsPaths as paths, userCreeds} from '../../../../../data/accountsAPI'
+import axios, {AxiosResponse} from 'axios'
 import ENV from '../../../../../data/envs/env'
 
 export type TSignInCredentials = {

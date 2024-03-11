@@ -1,7 +1,10 @@
 export const flowData = {
   street: '950 22nd St N Birmingham, AL, USA',
   propertyValue: '600,000',
+  purchasePrice: '600,000',
+  cashOutAmount: '7000',
   currentMortgageBalance: '400,000',
+  downPayment: '60,000',
 
   purchaseAddress: {
     city: 'Birmingham',

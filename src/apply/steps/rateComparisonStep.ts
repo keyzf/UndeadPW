@@ -1,23 +1,25 @@
 import {BasicStep} from './basicStep'
-import {Page, expect, test} from '@playwright/test'
+import {Locator, Page, expect, test} from '@playwright/test'
 import {TextFragment} from '../fragments/'
 import {urlData} from 'data/apply'
 
 export class RateComparisonStep extends BasicStep {
-  private readonly rateComparisonErrorElement: TextFragment
+  readonly rateComparisonErrorElement: TextFragment
   readonly programElement: string
   readonly rateElement: string
+  readonly programCarousel: Locator
 
   constructor(page: Page) {
     super(page)
     this.rateComparisonErrorElement = new TextFragment(this.page, '[class^="errorText__ErrorText"]')
     this.rateElement = '[class^="TermTabstyles__Tab"]'
     this.programElement = '[class^="ProgramCardstyles__Card"]'
+    this.programCarousel = page.locator('[class*="Carousel__ContentWrapper"]')
   }
 
   public async chooseRateComparison(rate?: string, program?: string) {
     await expect(this.page).toHaveURL(urlData.rateComparison)
-    await this.page.waitForSelector('[class*="Carousel__ContentWrapper"]', {state: 'visible'})
+    await this.programCarousel.waitFor({state: 'visible'})
     await test.step(`Choose Rate Comparison - ${rate || 'default'}`, async () => {
       await this.page.waitForSelector(this.rateElement, {state: 'visible'})
       if(rate) {

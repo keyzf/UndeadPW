@@ -1,7 +1,6 @@
+import {accountsPaths as paths, userCreeds} from '../../../../../data/accountsAPI'
 import {expect} from '@playwright/test'
 import axios, {AxiosResponse} from 'axios'
-
-import {accountsPaths as paths, userCreeds} from '../../../../../data/accountsAPI'
 import ENV from '../../../../../data/envs/env'
 
 import {AccountsSignIn, TSignInCredentials} from './signInAPIHelper'

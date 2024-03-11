@@ -1,4 +1,5 @@
-import { faker } from '@faker-js/faker'
+import {faker} from '@faker-js/faker'
+import {Page} from '@playwright/test'
 
 type TTestUser = {
   firstName: string,
@@ -16,4 +17,13 @@ export function generateTestUser(): TTestUser {
   }
 
   return testUser
+}
+
+/**
+ *
+ * @returns string of the current applicationId from URL
+ */
+export async function getApplicationId(page: Page): Promise<string> {
+  const url = await page.url()
+  return url.split('/')[4]
 }

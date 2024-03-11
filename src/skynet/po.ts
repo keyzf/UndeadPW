@@ -1,5 +1,4 @@
 import {Page} from '@playwright/test'
-
 import * as pages from './pages'
 
 export class SkynetPO {

@@ -1,3 +1,4 @@
+import {expect} from '@playwright/test'
 import {BaseFragment} from '.'
 
 export class CheckboxFragment extends BaseFragment {
@@ -7,13 +8,10 @@ export class CheckboxFragment extends BaseFragment {
    * @returns A promise that resolves when the checkbox is checked.
    */
   async check(value?: string): Promise<void> {
-    if(value) {
-      await this.getLocator().getByText(value).check({force: true})
-      await this.page.waitForTimeout(1000)
-    } else {
-      await this.getLocator().check({force: true})
-      await this.page.waitForTimeout(1000)
-    }
+    const locator = value ? this.getLocator().getByText(value) : this.getLocator()
+    await locator.waitFor({state: 'visible'})
+    await locator.check({force: true, trial: true})
+    expect(await locator).toBeChecked()
   }
 
   async uncheck(value?: string): Promise<void> {

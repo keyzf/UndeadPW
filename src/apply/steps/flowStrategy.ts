@@ -1,13 +1,20 @@
+import {AccountsWhiteLists} from 'helpers/accounts/whiteLists'
 import {cardData, flowData} from 'data/apply'
 import {Flow} from '../interfaces'
 import {LoginModalFragment} from '../fragments'
 import {Page} from '@playwright/test'
 import {Steps} from '../po'
 import ENV from 'data/envs/env'
-import {AccountsWhiteLists} from 'helpers/accounts/whiteLists'
 
 interface FlowStrategy {
-  performActions(): Promise<void>
+  performActions(userData?: IPersonalInfo): Promise<void>
+}
+
+interface IPersonalInfo {
+  email: string,
+  mobileNumber: string,
+  firstName: string,
+  lastName: string,
 }
 
 class RefinanceFlow implements FlowStrategy {
@@ -21,7 +28,7 @@ class RefinanceFlow implements FlowStrategy {
     this.loginModal = new LoginModalFragment(page)
   }
 
-  async performActions(): Promise<void> {
+  async performActions(userData?: IPersonalInfo): Promise<void> {
     await this.steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.REFINANCE)
     await this.steps.propertyType.selectPropertyType(cardData.propertyType.MANUFACTURED_HOME)
     await this.steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.SECOND_HOME)
@@ -30,7 +37,11 @@ class RefinanceFlow implements FlowStrategy {
     await this.steps.currentMortgageBalance.enterCurrentMortgageBalance(flowData.currentMortgageBalance)
     await this.steps.purposeOfRefinance.selectPurposeOfRefinance(cardData.purposeOfRefinance.LOWER_MONTHLY_PAYMENT)
     await this.steps.currentCreditProfile.selectCurrentCreditProfile(cardData.currentCreditProfile.FAIR)
-    await this.steps.personalInfo.fillPersonalInfoStep(flowData.personalInfo)
+    if(userData) {
+      await this.steps.personalInfo.fillPersonalInfoStep(userData)
+    } else {
+      await this.steps.personalInfo.fillPersonalInfoStep(flowData.personalInfo)
+    }
     await this.loginModal.geVerificationCode()
     await this.steps.rateComparison.chooseRateComparison()
   }
@@ -47,7 +58,7 @@ class PurchaseFlow implements FlowStrategy {
     this.loginModal = new LoginModalFragment(page)
   }
 
-  async performActions(): Promise<void> {
+  async performActions(userData?: IPersonalInfo): Promise<void> {
     await this.steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.REFINANCE)
     await this.steps.propertyType.selectPropertyType(cardData.propertyType.MANUFACTURED_HOME)
     await this.steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.SECOND_HOME)
@@ -56,7 +67,11 @@ class PurchaseFlow implements FlowStrategy {
     await this.steps.currentMortgageBalance.enterCurrentMortgageBalance(flowData.currentMortgageBalance)
     await this.steps.purposeOfRefinance.selectPurposeOfRefinance(cardData.purposeOfRefinance.LOWER_MONTHLY_PAYMENT)
     await this.steps.currentCreditProfile.selectCurrentCreditProfile(cardData.currentCreditProfile.FAIR)
-    await this.steps.personalInfo.fillPersonalInfoStep(flowData.personalInfo)
+    if(userData) {
+      await this.steps.personalInfo.fillPersonalInfoStep(userData)
+    } else {
+      await this.steps.personalInfo.fillPersonalInfoStep(flowData.personalInfo)
+    }
     await this.loginModal.geVerificationCode()
     await this.steps.rateComparison.chooseRateComparison()
   }
@@ -74,8 +89,10 @@ export class ApplicationFlow {
     this.accounts = new AccountsWhiteLists()
   }
 
-  async setFlow(flow: Flow): Promise<void> {
-    await this.accounts.addPhoneToWhiteLists('')
+  async setFlow(flow: Flow, userData?: IPersonalInfo): Promise<void> {
+    if(userData) {
+      await this.accounts.addPhoneToWhiteLists(`+1${userData.mobileNumber}`)
+    }
     await this.steps.typeOfLoan.openApply(ENV.APPLY_URL)
 
     switch (flow) {
@@ -94,7 +111,7 @@ export class ApplicationFlow {
 
     // Ensure that performActions is awaited before proceeding
     if (this.flowStrategy) {
-      await this.flowStrategy.performActions()
+      await this.flowStrategy.performActions(userData)
     } else {
       throw new Error('Flow strategy not initialized')
     }

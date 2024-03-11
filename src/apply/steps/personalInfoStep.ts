@@ -6,7 +6,7 @@ import {urlData} from 'data/apply'
 
 export class PersonalInfoStep extends BasicStep {
   personalInfo: PersonalInfoPage
-
+  
   constructor(page: Page) {
     super(page)
     this.personalInfo = new PersonalInfoPage(page)
@@ -30,14 +30,19 @@ export class PersonalInfoStep extends BasicStep {
     await this.personalInfo.mobileNumberInput.enterValue(value)
   }
 
-  async fillPersonalInfoStep(data: PersonalInfo) {
+  async fillPersonalInfoStep(data: PersonalInfo, insteadEmail?: boolean) {
     await expect(this.page).toHaveURL(urlData.personalInfo)
     await this.enterFirstName(data.firstName)
     await this.enterLastName(data.lastName)
     await this.enterEmail(data.email)
     await this.enterMobileNumber(data.mobileNumber)
     await this.personalInfo.termsCheckbox.check()
+    await this.page.waitForTimeout(1000)
     await this.personalInfo.receiveCheckbox.check()
-    await this.personalInfo.textByVerificationCodeButton.click()
+    if(insteadEmail) {
+      await this.personalInfo.insteadEmail.click()
+    } else {
+      await this.personalInfo.textByVerificationCodeButton.click()
+    }
   }
 }

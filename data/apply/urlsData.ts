@@ -1,11 +1,14 @@
 export const urlData = {
   additionalQuestion: /.*down-payment-value3/,
   assets: /.*assets/,
+  budget: /.*budget/,
+  cashOutAmount: /.*cash-out-amount/,
   completion: /.*completion/,
   creditProfile: /.*credit-profile/,
   currentCreditProfile: /.*current-credit-profile/,
   currentMortgageBalance: /.*current-mortgage-balance/,
   demographicInformation: /.*demographic-information/,
+  downPayment: /.*down-payment/,
   finalRateComparison: /.*final-rate-comparison/,
   firstTimeHomeBuyer: /.*first-time-home-buyer/,
   fullPersonalInfo: /.*full-personal-info/,
@@ -30,5 +33,6 @@ export const urlData = {
   residenceInfo: /.*residence-info/,
   titleHolder: /.*title-holder/,
   typeOfLoan: /.*type-of-loan/,
+  workingWithRealtors: /.*working-with-realtor/,
   yourFinances: /.*your-finances/,
 }

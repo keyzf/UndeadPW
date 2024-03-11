@@ -1,6 +1,5 @@
-import {ButtonData} from '../../shared'
-
 import {BaseFragment} from './baseFragment'
+import {ButtonData} from '../../shared'
 
 export class ButtonFragment extends BaseFragment {
   /**

@@ -1,6 +1,5 @@
-import {Page, chromium} from '@playwright/test'
-
 import {AccountsSignIn} from '../api'
+import {Page, chromium} from '@playwright/test'
 
 export type TLoginUserData = {
   email: string,
