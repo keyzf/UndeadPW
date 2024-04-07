@@ -80,7 +80,7 @@ export interface PersonalInfo {
 
 // Property Information Step
 export interface PropertyDetails {
-  yearBuilt: string,
+  yearBuilt?: string,
   typeOfProperty: string,
   attachmentType: string
   propertyStatus?: string | undefined
@@ -108,9 +108,9 @@ export interface PropertyInformation {
   propertyDetails: PropertyDetails,
   taxesInsurance: PropertyTaxesInsurance,
   homeownerAssociation: HomeownersAssociation,
-  otherExpenses: PropertyOtherExpenses,
+  otherExpenses?: PropertyOtherExpenses,
   rentalIncome: RentalIncome,
-  mortgageRemaining: MortgageRemaining
+  mortgageRemaining?: MortgageRemaining
 }
 
 // REO Step

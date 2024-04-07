@@ -3,6 +3,17 @@ import {Locator, Page, expect, test} from '@playwright/test'
 import {TextFragment} from '../fragments/'
 import {urlData} from 'data/apply'
 
+export type TRates = {
+  cells: string
+  rate: string
+  apr: string
+  fees:  string
+  points: string
+  cost3Years: string
+  cost8Years: string
+  payment: string
+}
+
 export class RateComparisonStep extends BasicStep {
   readonly rateComparisonErrorElement: TextFragment
   readonly programElement: string
@@ -41,7 +52,26 @@ export class RateComparisonStep extends BasicStep {
     })
   }
 
-  public getRateComparisonError(): TextFragment {
+  public async getRateComparisonError(): Promise<TextFragment> {
     return this.rateComparisonErrorElement
+  }
+
+  public async getProgramData(): Promise<TRates[]> {
+    await this.programCarousel.waitFor({state: 'visible'})
+    const programs = await this.page.$$eval(this.programElement, (programs) => {
+      return Array.from(programs).map(data => {
+        const cells = data.querySelectorAll('[class^="ProgramCardstyles__Cell-"]')
+        const rate = cells[0]?.querySelector('p')?.textContent as string
+        const apr = cells[1]?.querySelector('p')?.textContent as string
+        const fees = cells[2].querySelectorAll('button')[0].textContent as string
+        const points = cells[2].querySelectorAll('button')[1].textContent as string
+        const cost3Years = cells[3].querySelectorAll('p')[0].textContent as string
+        const cost8Years = cells[3].querySelectorAll('p')[1].textContent as string
+        const payment = cells[4].querySelectorAll('p')[0].textContent as string
+        return {rate, apr, fees, points, cost3Years, cost8Years, payment}
+      })
+    })
+    const data = {programs}
+    return data.programs as TRates[]
   }
 }

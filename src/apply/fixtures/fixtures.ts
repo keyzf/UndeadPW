@@ -1,7 +1,6 @@
-import {test as base} from '@playwright/test'
-
 import {LoginModalFragment} from '../fragments'
-import {ApplicationFlow, Steps} from '../po'
+import {Steps} from '../po'
+import {test as base} from '@playwright/test'
 
 type ApplyFixtures = {
   steps: Steps

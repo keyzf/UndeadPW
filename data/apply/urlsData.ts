@@ -29,6 +29,8 @@ export const urlData = {
   purposeOfRefinance: /.*purpose-of-refinance/,
   quickReview: /.*quick-review/,
   rateComparison: /.*rate-comparison/,
+  realtorInfo: /.*realtor-info/,
+  realtorInLoop: /.*realtor-in-loop/,
   reo: /.*reo/,
   residenceInfo: /.*residence-info/,
   titleHolder: /.*title-holder/,

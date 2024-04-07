@@ -8,3 +8,11 @@ export const userData = {
   citizenshipStatus: 'Citizen',
   email: 'aqaskynet@gmail.com'
 }
+
+export const realtorData = {
+  firstName: 'Auto',
+  lastName: 'Testun',
+  phoneNumber: '8489221111',
+  email: 'autotestun@mailinator.com',
+  companyId: '500040d2-fed4-498e-b9cc-64c1d6d5ef0c'
+}

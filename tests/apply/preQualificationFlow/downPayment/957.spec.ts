@@ -4,7 +4,7 @@ import {faker} from '@faker-js/faker'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@P1 @apply @purchaseSearching 
+  test(`@P1 @apply @purchase 
     957_[POS_Application]_PreQual_General_Questions_DownPayment_SetValidCustomValue_Navigation[PurchaseSearching]`, 
   async ({steps, page}) => {
     await steps.typeOfLoan.openApply(ENV.APPLY_URL)

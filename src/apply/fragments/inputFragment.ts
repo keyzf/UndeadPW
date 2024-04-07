@@ -1,8 +1,6 @@
-import {expect} from '@playwright/test'
-
-import {InputData} from '../../shared'
-
 import {BaseFragment} from './baseFragment'
+import {expect} from '@playwright/test'
+import {InputData} from '../../shared'
 
 export class InputFragment extends BaseFragment {
   /**
@@ -10,6 +8,7 @@ export class InputFragment extends BaseFragment {
    * @param clear - need to clear input
    */
   async enterValue(value: string, clear?: boolean): Promise<void> {
+    expect(await this.getLocator()).toBeVisible()
     if (clear) {
       await this.getLocator().clear()
       await this.getLocator().fill(value)
@@ -24,6 +23,7 @@ export class InputFragment extends BaseFragment {
    * @return {InputData} input data
    */
   async getData(): Promise<InputData> {
+    expect(await this.getLocator()).toBeVisible()
     const value = (await this.getLocator().inputValue()) ?? ''
     const disabled = await this.getLocator().isDisabled()
     return {value, disabled}

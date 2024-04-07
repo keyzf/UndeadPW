@@ -1,6 +1,6 @@
+import {InputFragment} from './inputFragment'
 import {Page} from '@playwright/test'
 import {StreetAddress} from '../../shared'
-import {InputFragment} from './inputFragment'
 
 export class AddressFragment {
   readonly page!: Page

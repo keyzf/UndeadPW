@@ -42,5 +42,9 @@ export const cardData = {
   firstTimeBuyer: {
     NO: 'NO',
     YES: 'YES'
+  },
+  realtorInLoop: {
+    NO: 'NO',
+    YES: 'YES'
   }
 }

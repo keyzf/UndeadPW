@@ -1,12 +1,13 @@
 import {BaseFragment} from './baseFragment'
 import {ButtonData} from '../../shared'
+import {expect} from '@playwright/test'
 
 export class ButtonFragment extends BaseFragment {
   /**
    * Clicks the button.
    */
   async click() {
-    await this.getLocator().isVisible()
+    expect(this.getLocator()).toBeVisible()
     await this.page.click(this.root as string, {delay: 300})
   }
 

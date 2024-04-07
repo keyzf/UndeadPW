@@ -10,8 +10,8 @@ type TTestUser = {
 
 export function generateTestUser(): TTestUser {
   const testUser: TTestUser = {
-    firstName: `aqa_ui_testUser_${faker.name.firstName()}`,
-    lastName: `aqa_ui_testUser_${faker.name.lastName()}`,
+    firstName: `aqa_ui_testUser_${faker.person.firstName()}`,
+    lastName: `aqa_ui_testUser_${faker.person.lastName()}`,
     email: `aqa_ui_testUser_${faker.internet.email()}`,
     mobileNumber: faker.phone.number('5728######')
   }

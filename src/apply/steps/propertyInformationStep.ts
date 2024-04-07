@@ -25,7 +25,9 @@ export class PropertyInformationStep extends BasicStep {
    * @param data yearBuilt, typeOfProperty, attachmentType, propertyStatus
    */
   async fillPropertyDetails(data: PropertyDetails) {
-    await this.propertyInformation.yearBuiltInput.enterValue(data.yearBuilt)
+    if(data.yearBuilt) {
+      await this.propertyInformation.yearBuiltInput.enterValue(data.yearBuilt)
+    }
     await this.propertyInformation.typeOfPropertyDropdown.selectValue(data.typeOfProperty)
     await this.propertyInformation.attachmentTypeDropdown.selectValue(data.attachmentType)
     if(data.propertyStatus) {
@@ -89,9 +91,13 @@ export class PropertyInformationStep extends BasicStep {
     await this.fillPropertyDetails(data.propertyDetails)
     await this.fillTaxesInsurance(data.taxesInsurance)
     await this.fillHomeownerAssociation(data.homeownerAssociation)
-    await this.fillOtherExpenses(data.otherExpenses)
+    if(data.otherExpenses) {
+      await this.fillOtherExpenses(data.otherExpenses)
+    }
     await this.fillRentalIncome(data.rentalIncome)
-    await this.fillMortgageRemaining(data.mortgageRemaining)
+    if(data.mortgageRemaining) {
+      await this.fillMortgageRemaining(data.mortgageRemaining)
+    }
     await this.footer.continueButton.click()
   }
 }

@@ -27,6 +27,8 @@ export class Steps {
   purchaseProcessType: steps.PurchaseProcessTypeStep
   purposeOfRefinance: steps.PurposeOfRefinanceStep
   rateComparison: steps.RateComparisonStep
+  realtorInfo: steps.RealtorInfoStep
+  realtorInLoop: steps.RealtorInLoopStep
   reo: steps.ReoStep
   residenceInfo: steps.ResidenceInfoStep
   review: steps.ReviewStep
@@ -59,6 +61,8 @@ export class Steps {
     this.purchaseProcessType = new steps.PurchaseProcessTypeStep(page)
     this.purposeOfRefinance = new steps.PurposeOfRefinanceStep(page)
     this.rateComparison = new steps.RateComparisonStep(page)
+    this.realtorInfo = new steps.RealtorInfoStep(page)
+    this.realtorInLoop = new steps.RealtorInLoopStep(page)
     this.reo = new steps.ReoStep(page)
     this.residenceInfo = new steps.ResidenceInfoStep(page)
     this.review = new steps.ReviewStep(page)

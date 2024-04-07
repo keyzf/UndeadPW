@@ -5,7 +5,7 @@ import {generateTestUser} from 'helpers/common/helper'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@P1 @apply @purchaseSearching 
+  test(`@P1 @apply @purchase 
   10193_[POS_Application]_PreQual_Rates_Building_PhoneVerificationModal_Navigation_NotLoggedUser[PurchaseSearching]`, 
   async ({steps, loginModal, page}) => {
     const generatedUser = generateTestUser()

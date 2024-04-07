@@ -5,7 +5,7 @@ import {generateTestUser} from 'helpers/common/helper'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@P1 @apply @purchaseSearching 22607_[Accounts]_POS_Auth_PersonalInfo_SignUp_ViaEmail[WithoutFlow]`, 
+  test(`@P1 @apply @purchase 22607_[Accounts]_POS_Auth_PersonalInfo_SignUp_ViaEmail[WithoutFlow]`, 
     async ({steps, loginModal, page}) => {
       const generatedUser = generateTestUser()
       const accounts = new AccountsWhiteLists()

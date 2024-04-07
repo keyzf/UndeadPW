@@ -1,6 +1,5 @@
-import {expect} from '@playwright/test'
-
 import {BaseFragment} from './baseFragment'
+import {expect} from '@playwright/test'
 
 export class RadioButtonFragment extends BaseFragment {
   /**

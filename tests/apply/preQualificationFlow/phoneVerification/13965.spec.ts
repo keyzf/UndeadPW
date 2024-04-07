@@ -3,7 +3,7 @@ import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@P2 @apply @purchaseSearching 13965_PhoneVerification_NoPrograms_NotLoggedUser[PurchaseSearching]`, 
+  test(`@P2 @apply @purchase 13965_PhoneVerification_NoPrograms_NotLoggedUser[PurchaseSearching]`, 
     async ({steps, loginModal, page}) => {
       const testData = {
         budget: '300000',

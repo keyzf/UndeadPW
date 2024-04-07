@@ -3,7 +3,7 @@ import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test('@P2 @apply @purchaseSearching 909_PropertyType_DefaultStateCheck[PurchaseSearching]', async ({steps, page}) => {
+  test('@P2 @apply @purchase 909_PropertyType_DefaultStateCheck[PurchaseSearching]', async ({steps, page}) => {
     await steps.typeOfLoan.openApply(ENV.APPLY_URL)
     await test.step('STEP 1 - Verify that Application Progress is "25"', async () => {
       await steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.PURCHASE)

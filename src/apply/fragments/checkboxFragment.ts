@@ -9,7 +9,7 @@ export class CheckboxFragment extends BaseFragment {
    */
   async check(value?: string): Promise<void> {
     const locator = value ? this.getLocator().getByText(value) : this.getLocator()
-    await locator.waitFor({state: 'visible'})
+    expect(locator).toBeVisible()
     await locator.check({force: true, trial: true})
     expect(await locator).toBeChecked()
   }
