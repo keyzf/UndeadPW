@@ -3,7 +3,8 @@ import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@smoke @apply @purchase 10159_[POS_Application]_PreQual_General_Questions_Budget_Navigation[PurchaseSearching]`,
+  test(`10159_[POS_Application]_PreQual_General_Questions_Budget_Navigation[PurchaseSearching]`, 
+    {tag: ['@smoke', '@apply', '@purchase']},
     async ({steps, page}) => {
       await steps.typeOfLoan.openApply(ENV.APPLY_URL)
       await test.step(`STEP 1 - Go to Budget Step`, async () => {

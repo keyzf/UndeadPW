@@ -6,16 +6,15 @@
   "scripts": {
     "lint": "eslint . --ext .js,.ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
-    "tests:run:qa": "cross-env test_env=qa playwright test",
     "tests:run:integration": "cross-env test_env=integration playwright test",
     "tests:run:stage": "cross-env test_env=stage playwright test",
     "tests:run": "playwright test",
     "tests:run:headed": "cross-env test_env=qa playwright test skynet.spec.ts --headed",
     "tests:report": "playwright show-report",
-    "ui_mode": "cross-env test_env=qa playwright test --ui"
+    "ui_mode": "cross-env test_env=stage playwright test --ui"
   },
   "dependencies": {
-    "@playwright/test": "1.42.1",
+    "@playwright/test": "^1.43.0",
     "@types/url-parse": "1.4.8",
     "cross-env": "7.0.3",
     "dotenv": "16.0.3",

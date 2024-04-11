@@ -3,8 +3,8 @@ import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@P2 @apply @refinance 10194_PhoneVerification_NoPrograms_NotLoggedUser[Refinance]`, 
-    async ({steps, loginModal, page}) => {
+  test(`10194_PhoneVerification_NoPrograms_NotLoggedUser[Refinance]`, 
+    {tag: ['@P2', '@apply', '@refinance']}, async ({steps, loginModal, page}) => {
       const testData = {
         propertyValue: '1000000',
         currentMortgageBalance: '450000',

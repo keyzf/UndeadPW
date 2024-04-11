@@ -7,8 +7,8 @@ import {LoanOptionsAPIHelper} from 'src/apply/helpers'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@smoke @apply @refinance 30346_[Pricing]_Apply_Checking_that_not_all_programs_in_points_have_a_0_value`, 
-    async ({steps, loginModal, page}) => {
+  test(`30346_[Pricing]_Apply_Checking_that_not_all_programs_in_points_have_a_0_value`, 
+    {tag: ['@smoke', '@apply', '@refinance']}, async ({steps, loginModal, page}) => {
       const testData = {
         xFunctionsKey: ''
       }

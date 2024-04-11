@@ -3,7 +3,7 @@ import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@P3 @apply @purchase 10144_PurchaseLocation_LicensedStatesVerification[PurchaseSearching]`,
+  test(`10144_PurchaseLocation_LicensedStatesVerification[PurchaseSearching]`, {tag: ['@P3', '@apply', '@purchase']},
     async ({steps}) => {
       const unprovidedZip = '99336'
       const errorText = `Unfortunately, we don't provide service in your state at this time.`

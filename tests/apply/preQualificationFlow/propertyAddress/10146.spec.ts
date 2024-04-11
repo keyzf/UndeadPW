@@ -20,8 +20,8 @@ test.describe('Apply', () => {
     await steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.INVESTMENT_PROPERTY)
   })
 
-  test('@P1 @apply @purchase 10146_PropertyAddress_UniqueSubjectPropertyAddress_Navigation[PurchaseSignedContract]',
-    async ({steps, page}) => {
+  test('10146_PropertyAddress_UniqueSubjectPropertyAddress_Navigation[PurchaseSignedContract]', 
+    {tag: ['@P1', '@apply', '@purchase']}, async ({steps, page}) => {
       await test.step(`STEP 1 - Verify that user can return to the previous step by clicking "Go Back" button`,
         async () => {
           await steps.propertyAddress.footer.goBackButton.click()

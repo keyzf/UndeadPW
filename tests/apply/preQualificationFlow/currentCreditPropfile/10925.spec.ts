@@ -3,7 +3,7 @@ import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@P1 @apply @refinance 10925_CurrentCreditProfile_Navigation[RefinanceCashOut]`, 
+  test(`10925_CurrentCreditProfile_Navigation[RefinanceCashOut]`, {tag: ['@P1', '@apply', '@refinance']},
     async ({steps, page}) => {
       await test.step(`STEP 1 - Go to Current Profile step`, async () => {
         await steps.typeOfLoan.openApply(ENV.APPLY_URL)

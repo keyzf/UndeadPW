@@ -6,8 +6,8 @@ import {TRates} from 'src/apply/steps'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@smoke @apply @refinance 30347_[Pricing]_Apply_The_programs_with_negative_points_are_included`, 
-    async ({steps, loginModal, page}) => {
+  test(`30347_[Pricing]_Apply_The_programs_with_negative_points_are_included`, 
+    {tag: ['@smoke', '@apply', '@refinance']}, async ({steps, loginModal, page}) => {
       const testData = {
         xFunctionsKey: ''
       }

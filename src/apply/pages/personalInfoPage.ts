@@ -17,8 +17,8 @@ export class PersonalInfoPage {
     this.emailAddressInput = new InputFragment(page, '[name="email"]')
     this.mobileNumberInput = new InputFragment(page, '[name="cellPhoneNumber"]')
     this.textByVerificationCodeButton = new ButtonFragment(page, '[data-testid="footer__nextButton"]')
-    this.termsCheckbox = new CheckboxFragment(page, page.locator('[name="isConsentObtained"]'))
-    this.receiveCheckbox = new CheckboxFragment(page, page.locator('[name="isUserAgreeToReceiveSms"]'))
+    this.termsCheckbox = new CheckboxFragment(page, page.locator('[name="isConsentObtained"]').locator('..'))
+    this.receiveCheckbox = new CheckboxFragment(page, page.locator('[name="isUserAgreeToReceiveSms"]').locator('..'))
     this.insteadEmail = page.getByLabel('I agree to receive a login')
   }
 }

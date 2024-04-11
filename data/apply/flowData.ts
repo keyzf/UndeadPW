@@ -14,7 +14,7 @@ export const flowData = {
   personalInfo: {
     firstName: 'Andy',
     lastName: 'America',
-    email: 'general_test_interfirst@test.com',
+    email: 'andyamerica1@mailinator.com',
     mobileNumber: '8888888888'
   },
   fullPersonalInfo: {

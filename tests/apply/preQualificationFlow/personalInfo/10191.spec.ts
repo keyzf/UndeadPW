@@ -3,8 +3,8 @@ import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@P1 @apply @purchase 10191_[Accounts]_POS_Auth_PersonalInfo_SignIn_ViaPhone[WithoutFlow]`, 
-    async ({steps, loginModal, page}) => {
+  test(`10191_[Accounts]_POS_Auth_PersonalInfo_SignIn_ViaPhone[WithoutFlow]`, 
+    {tag: ['@P1', '@apply', '@purchase']}, async ({steps, loginModal, page}) => {
       await test.step(`STEP 1 - Go to Personal Info Step`, async () => {
         await steps.typeOfLoan.openApply(ENV.APPLY_URL)
         await steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.PURCHASE)

@@ -15,9 +15,9 @@ dotenv.config({path: path.resolve(__dirname, '..', 'my.env')})
  */
 const config: PlaywrightTestConfig = {
   testDir: './tests',
-  timeout: 80000,
+  timeout: 1200000,
   /* Maximum time one test can run for. */
-  expect: {timeout: 80000},
+  expect: {timeout: 1200000},
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */

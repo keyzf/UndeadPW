@@ -6,7 +6,7 @@ export class RadioButtonFragment extends BaseFragment {
   * @param value - radio button value
   */
   async selectValue(value: string) {
-    await this.getLocator().getByText(value, {exact: true}).click()
+    await this.getLocator().getByText(value, {exact: true}).check()
     expect(await this.getLocator().getByLabel(value, {exact: true}).isChecked()).toBeTruthy()
   }
 

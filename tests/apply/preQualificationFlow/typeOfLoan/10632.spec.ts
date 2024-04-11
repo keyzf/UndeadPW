@@ -3,7 +3,7 @@ import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test('@P1 @apply 10632_TypeOfLoan_DefaultStateCheck[WithoutFlow]', async ({steps, page}) => {
+  test('10632_TypeOfLoan_DefaultStateCheck[WithoutFlow]', {tag: ['@P1', '@apply']}, async ({steps, page}) => {
     const footer = new FooterFragment(page)
     const progressFragment = new ApplicationProgressFragment(page)
 

@@ -8,8 +8,8 @@ import {LoanOptionsAPIHelper} from 'src/apply/helpers'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@P1 @apply @refinance 30348_[Pricing]_Checking_and_comparing_programs_on_Admin_and_Apply_Value_of_programs`, 
-    async ({steps, loginModal, page}) => {
+  test(`30348_[Pricing]_Checking_and_comparing_programs_on_Admin_and_Apply_Value_of_programs`, 
+    {tag: ['@P1', '@apply', '@refinance']}, async ({steps, loginModal, page}) => {
       const testData = {
         adminLoanOptions : {
           appraisedValue: 400000,

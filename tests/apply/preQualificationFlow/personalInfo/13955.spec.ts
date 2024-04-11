@@ -5,8 +5,8 @@ import {generateTestUser} from 'helpers/common/helper'
 import ENV from 'data/envs/env'
 
 test.describe('Apply', () => {
-  test(`@P1 @apply @refinance 13955_PersonalInfo_Navigation_LoggedUser[Refinance]`, 
-    async ({steps, loginModal, page}) => {
+  test(`13955_PersonalInfo_Navigation_LoggedUser[Refinance]`, 
+    {tag: ['@P1', '@apply', '@refinance']}, async ({steps, loginModal, page}) => {
       const generatedUser = generateTestUser()
       const accounts = new AccountsWhiteLists()
   
