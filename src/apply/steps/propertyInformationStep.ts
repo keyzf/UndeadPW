@@ -30,6 +30,9 @@ export class PropertyInformationStep extends BasicStep {
     }
     await this.propertyInformation.typeOfPropertyDropdown.selectValue(data.typeOfProperty)
     await this.propertyInformation.attachmentTypeDropdown.selectValue(data.attachmentType)
+    if(data.typeOfProperty === 'Multi-Unit') {
+      await this.propertyInformation.numberOfUnitsDropdown.selectValue(data.numberOfUnits as string)
+    }
     if(data.propertyStatus) {
       await this.propertyInformation.propertyStatus.selectValue(data.propertyStatus)
     }

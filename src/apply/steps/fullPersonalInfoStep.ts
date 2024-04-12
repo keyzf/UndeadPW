@@ -1,9 +1,9 @@
+import {AdditionalInformation, FullPersonalInfo, YourContactInformation, YourName} from '../interfaces'
 import {BasicStep} from './basicStep'
 import {FullPersonalInfoPage} from '../pages'
 import {ModalFragment} from '../fragments/commonFragments'
 import {Page, expect} from '@playwright/test'
 import {urlData} from 'data/apply'
-import {AdditionalInformation, FullPersonalInfo, YourContactInformation, YourName} from '../interfaces'
 
 export class FullPersonalInfoStep extends BasicStep {
   fullPersonalInfo: FullPersonalInfoPage

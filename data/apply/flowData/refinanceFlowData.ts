@@ -1,4 +1,4 @@
-export const flowData = {
+export const refinanceFlowData = {
   street: '950 22nd St N Birmingham, AL, USA',
   propertyValue: '600,000',
   purchasePrice: '600,000',
@@ -7,8 +7,12 @@ export const flowData = {
   downPayment: '60,000',
 
   purchaseAddress: {
+    address: '951 22nd St N Birmingham, AL, USA',
+    unit: '',
     city: 'Birmingham',
-    zipCode: '35203'
+    state: 'Alabama',
+    zip: '35203',
+    county: 'Jefferson County'
   },
 
   personalInfo: {
@@ -36,7 +40,7 @@ export const flowData = {
 
   propertyInformation: {
     propertyDetails: {
-      yearBuilt: '1900',
+      yearBuilt: '1990',
       typeOfProperty: 'Condo',
       attachmentType: 'Detached',
     },

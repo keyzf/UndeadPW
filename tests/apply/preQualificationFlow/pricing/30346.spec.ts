@@ -1,5 +1,5 @@
 import {AccountsWhiteLists} from 'helpers/accounts'
-import {cardData, flowData} from 'data/apply'
+import {cardData, refinanceFlowData} from 'data/apply'
 import {commonData} from 'data'
 import {expect, test} from 'fixtures'
 import {generateTestUser, getApplicationId} from 'helpers/common/helper'
@@ -27,9 +27,9 @@ test.describe('Apply', () => {
       await steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.REFINANCE)
       await steps.propertyType.selectPropertyType(cardData.propertyType.TOWNHOUSE)
       await steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.SECOND_HOME)
-      await steps.propertyAddress.enterAddress(flowData.street)
-      await steps.propertyValue.enterPropertyValue(flowData.propertyValue)
-      await steps.currentMortgageBalance.enterCurrentMortgageBalance(flowData.currentMortgageBalance)
+      await steps.propertyAddress.enterAddress(refinanceFlowData.street)
+      await steps.propertyValue.enterPropertyValue(refinanceFlowData.propertyValue)
+      await steps.currentMortgageBalance.enterCurrentMortgageBalance(refinanceFlowData.currentMortgageBalance)
       await steps.purposeOfRefinance.selectPurposeOfRefinance(cardData.purposeOfRefinance.LOWER_MONTHLY_PAYMENT)
       await steps.currentCreditProfile.selectCurrentCreditProfile(cardData.currentCreditProfile.FAIR)
       await accounts.addPhoneToWhiteLists(`+1${generatedUser.mobileNumber}`)

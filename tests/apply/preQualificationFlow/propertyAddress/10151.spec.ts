@@ -1,4 +1,4 @@
-import {cardData, flowData, urlData} from 'data/apply'
+import {cardData, refinanceFlowData, urlData} from 'data/apply'
 import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
@@ -16,7 +16,7 @@ test.describe('Apply', () => {
 
       await test.step(`STEP 2 - Enter unique valid data only into required fields:- Street Address`,
         async () => {
-          await steps.propertyAddress.enterAddress(flowData.street)
+          await steps.propertyAddress.enterAddress(refinanceFlowData.street)
           await expect(page).toHaveURL(urlData.propertyValue)
         })
     })

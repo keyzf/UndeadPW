@@ -1,27 +1,16 @@
-import {cardData, flowData, urlData} from 'data/apply'
 import {expect, test} from 'fixtures'
-import ENV from 'data/envs/env'
+import {Flow} from 'src/apply/interfaces'
+import {generateTestUser} from 'helpers/common/helper'
+import {refinanceFlowData, urlData} from 'data/apply'
 
 test.describe('Apply', () => {
   test(`14300_[POS_Application]_Property_Information_Navigation_OnlyRequiredFields[Refinance]`,
-    {tag: ['@smoke', '@apply', '@refinance']},
-    async ({steps, loginModal, page}) => {
-      await steps.typeOfLoan.openApply(ENV.APPLY_URL)
-      await steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.REFINANCE)
-      await steps.propertyType.selectPropertyType(cardData.propertyType.CO_OP)
-      await steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.INVESTMENT_PROPERTY)
-      await steps.propertyAddress.enterAddress(flowData.street)
-      await steps.propertyValue.enterPropertyValue(flowData.propertyValue)
-      await steps.currentMortgageBalance.enterCurrentMortgageBalance(flowData.currentMortgageBalance)
-      await steps.purposeOfRefinance.selectPurposeOfRefinance(cardData.purposeOfRefinance.LOWER_MONTHLY_PAYMENT)
-      await steps.currentCreditProfile.selectCurrentCreditProfile(cardData.currentCreditProfile.EXCELLENT)
-      await steps.personalInfo.fillPersonalInfoStep(flowData.personalInfo)
-      await loginModal.geVerificationCode()
-      await steps.rateComparison.chooseRateComparison()
-      await steps.fullPersonalInfo.fillFullPersonalInfo(flowData.fullPersonalInfo)
+    {tag: ['@smoke', '@apply', '@refinance']}, async ({steps, applicationFlow, page}) => {
+      await applicationFlow.applicationFlow.setFlow(Flow.refinance, generateTestUser())
+      await steps.fullPersonalInfo.fillFullPersonalInfo(refinanceFlowData.fullPersonalInfo)
 
       await test.step(`STEP 1 - 2 - Enter valid data only into required fields`, async () => {
-        await steps.propertyInformation.fillPropertyInformation(flowData.propertyInformation)
+        await steps.propertyInformation.fillPropertyInformation(refinanceFlowData.propertyInformation)
         await expect(page).toHaveURL(urlData.titleHolder)
       })
 

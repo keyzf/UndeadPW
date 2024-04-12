@@ -1,5 +1,5 @@
 import {AccountsWhiteLists} from 'helpers/accounts/whiteLists'
-import {cardData, flowData} from 'data/apply'
+import {cardData, purchaseFlowData, refinanceFlowData} from 'data/apply'
 import {Flow} from '../interfaces'
 import {LoginModalFragment} from '../fragments'
 import {Page} from '@playwright/test'
@@ -30,17 +30,17 @@ class RefinanceFlow implements FlowStrategy {
 
   async performActions(userData?: IPersonalInfo): Promise<void> {
     await this.steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.REFINANCE)
-    await this.steps.propertyType.selectPropertyType(cardData.propertyType.MANUFACTURED_HOME)
-    await this.steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.SECOND_HOME)
-    await this.steps.propertyAddress.enterAddress(flowData.street)
-    await this.steps.propertyValue.enterPropertyValue(flowData.propertyValue)
-    await this.steps.currentMortgageBalance.enterCurrentMortgageBalance(flowData.currentMortgageBalance)
+    await this.steps.propertyType.selectPropertyType(cardData.propertyType.CO_OP)
+    await this.steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.INVESTMENT_PROPERTY)
+    await this.steps.propertyAddress.enterAddress(refinanceFlowData.street)
+    await this.steps.propertyValue.enterPropertyValue(refinanceFlowData.propertyValue)
+    await this.steps.currentMortgageBalance.enterCurrentMortgageBalance(refinanceFlowData.currentMortgageBalance)
     await this.steps.purposeOfRefinance.selectPurposeOfRefinance(cardData.purposeOfRefinance.LOWER_MONTHLY_PAYMENT)
-    await this.steps.currentCreditProfile.selectCurrentCreditProfile(cardData.currentCreditProfile.FAIR)
+    await this.steps.currentCreditProfile.selectCurrentCreditProfile(cardData.currentCreditProfile.EXCELLENT)
     if(userData) {
       await this.steps.personalInfo.fillPersonalInfoStep(userData)
     } else {
-      await this.steps.personalInfo.fillPersonalInfoStep(flowData.personalInfo)
+      await this.steps.personalInfo.fillPersonalInfoStep(refinanceFlowData.personalInfo)
     }
     await this.loginModal.geVerificationCode()
     await this.steps.rateComparison.chooseRateComparison()
@@ -59,18 +59,21 @@ class PurchaseFlow implements FlowStrategy {
   }
 
   async performActions(userData?: IPersonalInfo): Promise<void> {
-    await this.steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.REFINANCE)
-    await this.steps.propertyType.selectPropertyType(cardData.propertyType.MANUFACTURED_HOME)
-    await this.steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.SECOND_HOME)
-    await this.steps.propertyAddress.enterAddress(flowData.street)
-    await this.steps.propertyValue.enterPropertyValue(flowData.propertyValue)
-    await this.steps.currentMortgageBalance.enterCurrentMortgageBalance(flowData.currentMortgageBalance)
-    await this.steps.purposeOfRefinance.selectPurposeOfRefinance(cardData.purposeOfRefinance.LOWER_MONTHLY_PAYMENT)
-    await this.steps.currentCreditProfile.selectCurrentCreditProfile(cardData.currentCreditProfile.FAIR)
+    await this.steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.PURCHASE)
+    await this.steps.firstTimeBuyer.selectFirstTimeBuyer(cardData.firstTimeBuyer.YES)
+    await this.steps.purchaseProcessType
+      .selectPurchaseProcessType(cardData.purchaseProcessType.SEARCHING_OR_SHOPPING_AROUND)
+    await this.steps.propertyType.selectPropertyType(cardData.propertyType.SINGLE_FAMILY)
+    await this.steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.PRIMARY_RESIDENCE)
+    await this.steps.purchaseLocation.enterAddress(purchaseFlowData.purchaseAddress.zipCode)
+    await this.steps.budget.enterAmount(purchaseFlowData.propertyValue)
+    await this.steps.currentCreditProfile.selectCurrentCreditProfile(cardData.currentCreditProfile.EXCELLENT)
+    await this.steps.downPayment.enterAmount(purchaseFlowData.downPayment)
+    await this.steps.workingWithRealtor.selectWorkingWithRealtor(cardData.workingWithRealtor.NO)
     if(userData) {
       await this.steps.personalInfo.fillPersonalInfoStep(userData)
     } else {
-      await this.steps.personalInfo.fillPersonalInfoStep(flowData.personalInfo)
+      await this.steps.personalInfo.fillPersonalInfoStep(purchaseFlowData.personalInfo)
     }
     await this.loginModal.geVerificationCode()
     await this.steps.rateComparison.chooseRateComparison()

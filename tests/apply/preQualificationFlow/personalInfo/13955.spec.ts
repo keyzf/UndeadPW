@@ -1,5 +1,5 @@
 import {AccountsWhiteLists} from 'helpers/accounts'
-import {cardData, flowData, urlData} from 'data/apply'
+import {cardData, refinanceFlowData, urlData} from 'data/apply'
 import {expect, test} from 'fixtures'
 import {generateTestUser} from 'helpers/common/helper'
 import ENV from 'data/envs/env'
@@ -14,9 +14,9 @@ test.describe('Apply', () => {
       await steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.REFINANCE)
       await steps.propertyType.selectPropertyType(cardData.propertyType.CO_OP)
       await steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.INVESTMENT_PROPERTY)
-      await steps.propertyAddress.enterAddress(flowData.street)
-      await steps.propertyValue.enterPropertyValue(flowData.propertyValue)
-      await steps.currentMortgageBalance.enterCurrentMortgageBalance(flowData.currentMortgageBalance)
+      await steps.propertyAddress.enterAddress(refinanceFlowData.street)
+      await steps.propertyValue.enterPropertyValue(refinanceFlowData.propertyValue)
+      await steps.currentMortgageBalance.enterCurrentMortgageBalance(refinanceFlowData.currentMortgageBalance)
       await steps.purposeOfRefinance.selectPurposeOfRefinance(cardData.purposeOfRefinance.LOWER_MONTHLY_PAYMENT)
       await steps.currentCreditProfile.selectCurrentCreditProfile(cardData.currentCreditProfile.EXCELLENT)
       await expect(page).toHaveURL(urlData.personalInfo)

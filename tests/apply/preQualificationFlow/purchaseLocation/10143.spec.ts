@@ -1,4 +1,4 @@
-import {cardData, flowData, urlData} from 'data/apply'
+import {cardData, purchaseFlowData, urlData} from 'data/apply'
 import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
@@ -17,7 +17,7 @@ test.describe('Apply', () => {
       })
 
       await test.step(`STEP 2 - Enter valid zip code into "Zip Code" field`, async () => {
-        await steps.purchaseLocation.enterAddress(flowData.purchaseAddress.zipCode)
+        await steps.purchaseLocation.enterAddress(purchaseFlowData.purchaseAddress.zipCode)
         await expect(page).toHaveURL(urlData.budget)
       })
 

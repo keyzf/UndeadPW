@@ -83,7 +83,8 @@ export interface PropertyDetails {
   yearBuilt?: string,
   typeOfProperty: string,
   attachmentType: string
-  propertyStatus?: string | undefined
+  propertyStatus?: string | undefined,
+  numberOfUnits?: string | undefined
 }
 
 export interface HomeownersAssociation {

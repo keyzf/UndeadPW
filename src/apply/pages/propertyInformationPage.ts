@@ -7,6 +7,7 @@ export class PropertyInformationPage {
   readonly typeOfPropertyDropdown: DropdownFragment
   readonly attachmentTypeDropdown: DropdownFragment
   readonly propertyStatus: DropdownFragment
+  readonly numberOfUnitsDropdown: DropdownFragment
 
   // Taxes, Insurance block
   readonly escrowingRadiobutton: RadioButtonFragment
@@ -31,6 +32,7 @@ export class PropertyInformationPage {
     this.yearBuiltInput = new InputFragment(page, '[name="yearBuilt"]')
     this.typeOfPropertyDropdown = new DropdownFragment(page, '[id^="propertyType"]')
     this.attachmentTypeDropdown = new DropdownFragment(page, '[id^="attachmentType"]')
+    this.numberOfUnitsDropdown = new DropdownFragment(page, '[id^="numberOfUnits"]')
     // TODO: need to add selector
     this.propertyStatus = new DropdownFragment(page, '')
     //

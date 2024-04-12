@@ -1,4 +1,4 @@
-import {cardData, flowData, urlData} from 'data/apply'
+import {cardData, purchaseFlowData, urlData} from 'data/apply'
 import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
@@ -12,8 +12,8 @@ test.describe('Apply', () => {
         .selectPurchaseProcessType(cardData.purchaseProcessType.ALREADY_SIGNED_A_PURCHASE_CONTRACT)
       await steps.propertyType.selectPropertyType(cardData.propertyType.CONDO)
       await steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.INVESTMENT_PROPERTY)
-      await steps.propertyAddress.enterAddress(flowData.street)
-      await steps.purchasePrice.enterPurchasePrice(flowData.purchasePrice)
+      await steps.propertyAddress.enterAddress(purchaseFlowData.street)
+      await steps.purchasePrice.enterPurchasePrice(purchaseFlowData.purchasePrice)
 
       await test.step(`STEP 2 - Verify that user can return to the previous step by clicking "Go Back" button`, 
         async () => {

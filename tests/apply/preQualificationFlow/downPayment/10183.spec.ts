@@ -1,4 +1,4 @@
-import {cardData, flowData, urlData} from 'data/apply'
+import {cardData, purchaseFlowData, urlData} from 'data/apply'
 import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
@@ -12,8 +12,8 @@ test.describe('Apply', () => {
         .selectPurchaseProcessType(cardData.purchaseProcessType.SEARCHING_OR_SHOPPING_AROUND)
       await steps.propertyType.selectPropertyType(cardData.propertyType.CONDO)
       await steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.SECOND_HOME)
-      await steps.purchaseLocation.enterAddress(flowData.purchaseAddress.zipCode)
-      await steps.budget.enterAmount(flowData.propertyValue)
+      await steps.purchaseLocation.enterAddress(purchaseFlowData.purchaseAddress.zipCode)
+      await steps.budget.enterAmount(purchaseFlowData.propertyValue)
       await steps.currentCreditProfile.selectCurrentCreditProfile(cardData.currentCreditProfile.EXCELLENT)
       await expect(page).toHaveURL(urlData.downPayment)
 

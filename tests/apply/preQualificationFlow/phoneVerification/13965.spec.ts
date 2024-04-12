@@ -1,4 +1,4 @@
-import {cardData, flowData, urlData} from 'data/apply'
+import {cardData, purchaseFlowData, urlData} from 'data/apply'
 import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
@@ -18,7 +18,7 @@ test.describe('Apply', () => {
         .selectPurchaseProcessType(cardData.purchaseProcessType.SEARCHING_OR_SHOPPING_AROUND)
       await steps.propertyType.selectPropertyType(cardData.propertyType.CONDO)
       await steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.SECOND_HOME)
-      await steps.purchaseLocation.enterAddress(flowData.purchaseAddress.zipCode)
+      await steps.purchaseLocation.enterAddress(purchaseFlowData.purchaseAddress.zipCode)
       await steps.budget.enterAmount(testData.budget)
       await steps.currentCreditProfile.selectCurrentCreditProfile(cardData.currentCreditProfile.BAD)
       await steps.downPayment.enterAmount(testData.downPayment)
@@ -26,7 +26,7 @@ test.describe('Apply', () => {
       await expect(page).toHaveURL(urlData.personalInfo)
   
       await test.step(`STEP 1 - Go to Personal Info step`, async () => {
-        await steps.personalInfo.fillPersonalInfoStep(flowData.personalInfo)
+        await steps.personalInfo.fillPersonalInfoStep(purchaseFlowData.personalInfo)
         await loginModal.geVerificationCode()
         await steps.rateComparison.rateComparisonErrorElement.getLocator().waitFor({state: 'visible'})
         expect(await steps.rateComparison.rateComparisonErrorElement.getData()).toContain(testData.errorText)

@@ -1,4 +1,4 @@
-import {cardData, flowData, urlData} from 'data/apply'
+import {cardData, purchaseFlowData, urlData} from 'data/apply'
 import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
@@ -10,13 +10,13 @@ test.describe('Apply', () => {
         await steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.REFINANCE)
         await steps.propertyType.selectPropertyType(cardData.propertyType.CO_OP)
         await steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.INVESTMENT_PROPERTY)
-        await steps.propertyAddress.enterAddress(flowData.street)
-        await steps.propertyValue.enterPropertyValue(flowData.propertyValue)
+        await steps.propertyAddress.enterAddress(purchaseFlowData.street)
+        await steps.propertyValue.enterPropertyValue(purchaseFlowData.propertyValue)
         await expect(page).toHaveURL(urlData.currentMortgageBalance)
       })
 
       await test.step('STEP 2 - Enter more than 1 into "Amount" field', async () => {
-        await steps.currentMortgageBalance.enterCurrentMortgageBalance(flowData.currentMortgageBalance)
+        await steps.currentMortgageBalance.enterCurrentMortgageBalance(purchaseFlowData.currentMortgageBalance)
         await expect(page).toHaveURL(urlData.purposeOfRefinance)
       })
 

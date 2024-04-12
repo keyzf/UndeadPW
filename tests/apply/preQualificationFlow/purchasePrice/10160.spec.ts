@@ -1,4 +1,4 @@
-import {cardData, flowData, urlData} from 'data/apply'
+import {cardData, purchaseFlowData, urlData} from 'data/apply'
 import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
@@ -12,7 +12,7 @@ test.describe('Apply', () => {
         .selectPurchaseProcessType(cardData.purchaseProcessType.ALREADY_SIGNED_A_PURCHASE_CONTRACT)
       await steps.propertyType.selectPropertyType(cardData.propertyType.CONDO)
       await steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.INVESTMENT_PROPERTY)
-      await steps.propertyAddress.enterAddress(flowData.street)
+      await steps.propertyAddress.enterAddress(purchaseFlowData.street)
       await expect(page).toHaveURL(urlData.purchasePrice)
 
       await test.step(`STEP 1 - Verify that user can return to the previous step by clicking "Go Back" button`, 
@@ -25,7 +25,7 @@ test.describe('Apply', () => {
         value to "Amount" field and clicking "Continue" button`, 
       async () => {
         await steps.propertyAddress.footer.continueButton.click()
-        await steps.purchasePrice.enterPurchasePrice(flowData.propertyValue)
+        await steps.purchasePrice.enterPurchasePrice(purchaseFlowData.propertyValue)
         await expect(page).toHaveURL(urlData.currentCreditProfile)
       })
     })

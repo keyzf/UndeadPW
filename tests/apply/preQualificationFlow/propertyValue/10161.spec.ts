@@ -1,4 +1,4 @@
-import {cardData, flowData, urlData} from 'data/apply'
+import {cardData, refinanceFlowData, urlData} from 'data/apply'
 import {expect, test} from 'fixtures'
 import ENV from 'data/envs/env'
 
@@ -10,12 +10,12 @@ test.describe('Apply', () => {
         await steps.typeOfLoan.selectTypeOfLoan(cardData.typeOfLoan.REFINANCE)
         await steps.propertyType.selectPropertyType(cardData.propertyType.SINGLE_FAMILY)
         await steps.propertyUsageDetails.selectPropertyUsageDetails(cardData.propertyUsageDetails.PRIMARY_RESIDENCE)
-        await steps.propertyAddress.enterAddress(flowData.street)
+        await steps.propertyAddress.enterAddress(refinanceFlowData.street)
         await expect(page).toHaveURL(urlData.propertyValue)
       })
 
       await test.step(`STEP 2 - Enter valid value into Amount field`, async () => {
-        await steps.propertyValue.enterPropertyValue(flowData.propertyValue)
+        await steps.propertyValue.enterPropertyValue(refinanceFlowData.propertyValue)
         await expect(page).toHaveURL(urlData.currentMortgageBalance)
       })
 
